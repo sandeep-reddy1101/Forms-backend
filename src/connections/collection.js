@@ -12,7 +12,9 @@ const userInfoSchema = mongoose.Schema(schema, {
 
 collection = {};
 const dbURL =
-  "mongodb+srv://sandeepxsandy49:bYJd5mDVfrafxkpM@cluster0.uhoidoo.mongodb.net/dataDB?retryWrites=true&w=majority";
+  "mongodb+srv://sandeepxsandy49:somVcyJDII5N3c5G@cluster0.uhoidoo.mongodb.net/dataDB?retryWrites=true&w=majority";
+
+const localDbUrl = "mongodb+srv://sandeepxsandy49:somVcyJDII5N3c5G@cluster0.uhoidoo.mongodb.net/";
 
 //Creating the connection
 collection.getCollection = () => {

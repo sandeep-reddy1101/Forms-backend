@@ -34,11 +34,13 @@ router.get('/verifyUser/:email/:password', (req, res)=>{
     let userCredentials = {email: req.params.email, password: req.params.password};
     getMethods.getuserwithemail(userCredentials.email).then(data=>{
         if (data) {
-            if (hash.comparePassword(userCredentials.password, data[0].password)) {
-                res.json({login : true});
-            } else {
-                res.json({message : "Password is wrong", login: false});
-            }
+            hash.comparePassword(userCredentials.password, data[0].password).then((hashResponse)=>{
+                if(hashResponse) {
+                    res.json({login : true, data : data[0]});
+                }else {
+                    res.json({message : "Password is wrong", login: false});
+                }
+            })
         } else {
             res.json({message : "User doesn't exist. Email address is wrong", login: false});
         }

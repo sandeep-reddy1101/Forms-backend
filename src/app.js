@@ -16,7 +16,7 @@ app.get('/', (req, res)=>{
 app.use('/get', getRouter);
 app.use('/post', postRouter);
 
-const port = 3000;
+const port = 4200;
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);
 })
