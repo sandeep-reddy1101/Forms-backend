@@ -5,24 +5,47 @@ const mongoose = require("mongoose");
 //it ensures that all Mongoose operations use the same Promise implementation throughout the application.
 mongoose.Promise = global.Promise;
 
-const userInfoSchema = mongoose.Schema(schema, {
-  collection: "userInfo",
-  timestamps: { createdAt: true, updatedAt: true },
-});
-
+// Creating a collection object which we will export.
 collection = {};
-const dbURL =
-  "mongodb+srv://sandeepxsandy49:somVcyJDII5N3c5G@cluster0.uhoidoo.mongodb.net/dataDB?retryWrites=true&w=majority";
 
-const localDbUrl = "mongodb+srv://sandeepxsandy49:somVcyJDII5N3c5G@cluster0.uhoidoo.mongodb.net/";
+// Getting database URL from environment file
+const dbURL = process.env.DATABASE_URL;
 
-//Creating the connection
-collection.getCollection = () => {
+//Creating the connection for userInfo collection
+collection.getUserCollection = () => {
   return mongoose
     .connect(dbURL, { useNewUrlParser: true })
     .then((db) => {
       //Here we are returning the model which allows to querying and manipulating the collection.
-      return db.model("userInfo", userInfoSchema);
+      return db.model("userInfo", schema.userInfoSchema);
+    })
+    .catch((error) => {
+      console.log(error);
+      return error.message;
+    });
+};
+
+//Creating the connection for productInfo collection.
+collection.getProductCollection = () => {
+  return mongoose
+    .connect(dbURL, { useNewUrlParser: true })
+    .then((db) => {
+      //Here we are returning the model which allows to querying and manipulating the collection.
+      return db.model("productInfo", schema.productInfoSchema);
+    })
+    .catch((error) => {
+      console.log(error);
+      return error.message;
+    });
+};
+
+//Creating the connection for cartInfo collection.
+collection.getCartCollection = () => {
+  return mongoose
+    .connect(dbURL, { useNewUrlParser: true })
+    .then((db) => {
+      //Here we are returning the model which allows to querying and manipulating the collection.
+      return db.model("cartInfo", schema.cartSchema);
     })
     .catch((error) => {
       console.log(error);
