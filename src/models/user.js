@@ -18,7 +18,6 @@ requests.insertUser = (userInfo)=>{
                     userInfo.password = hashedPassword;
                     return model.insertMany(userInfo).then(inserted=>{
                         // Here inserted is user data in the array Ex: [{}]
-                        console.log(inserted)
                         if(inserted.length > 0){
                             return inserted
                         }

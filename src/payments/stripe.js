@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
         success_url: successUrl,
         cancel_url: errorUrl,
       }).then((session) => {
-        console.log(session)
+        // console.log(session)
         res.json({ url: session.url })
       }).catch(err => {
         res.json({ error: err.message });

@@ -20,8 +20,8 @@ collection.getUserCollection = () => {
       return db.model("userInfo", schema.userInfoSchema);
     })
     .catch((error) => {
-      console.log(error);
-      return error.message;
+      console.log(error.message)
+      throw Error(error.message)
     });
 };
 
@@ -34,8 +34,8 @@ collection.getProductCollection = () => {
       return db.model("productInfo", schema.productInfoSchema);
     })
     .catch((error) => {
-      console.log(error);
-      return error.message;
+      console.log(error.message)
+      throw Error(error.message)
     });
 };
 
@@ -48,8 +48,8 @@ collection.getCartCollection = () => {
       return db.model("cartInfo", schema.cartSchema);
     })
     .catch((error) => {
-      console.log(error);
-      return error.message;
+      console.log(error.message)
+      throw Error(error.message)
     });
 };
 
